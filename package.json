@@ -1,0 +1,22 @@
+{
+  "name": "uav_webapp_v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minh1622/UAV_WEBAPP_V2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minh1622/UAV_WEBAPP_V2/issues"
+  },
+  "homepage": "https://github.com/minh1622/UAV_WEBAPP_V2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
