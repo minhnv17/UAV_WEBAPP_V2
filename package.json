@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/minh1622/UAV_WEBAPP_V2#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mqtt": "^4.2.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
