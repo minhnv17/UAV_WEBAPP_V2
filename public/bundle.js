@@ -1,18 +1,23 @@
-$('#btn-publish').on('click', ()=>{
-    var data = $('#new-node').val()
-    data = JSON.stringify(data)
-    fetch('https://minh-api.herokuapp.com/api/v1/publish', {
-        method: 'POST', // or 'PUT'
+async function postData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
         headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+$('#btn-publish').on('click', ()=>{
+    node = $('#new-node').val()
+    data = {route: node}
+    postData('hhttps://minh-api.herokuapp.com/api/v1/publish', data)
 })
