@@ -19,5 +19,5 @@ async function postData(url = '', data = {}) {
 $('#btn-publish').on('click', ()=>{
     node = $('#new-node').val()
     data = {route: node}
-    postData('hhttps://minh-api.herokuapp.com/api/v1/publish', data)
+    postData('https://minh-api.herokuapp.com/api/v1/publish', data)
 })
