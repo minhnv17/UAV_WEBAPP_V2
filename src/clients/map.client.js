@@ -1,4 +1,5 @@
-const subscribe_data = require('./subscribe_data.client')
+const showAndUpdateData = require('./showAndUpdateData.client')
+const publish_data = require('./publish_data.client')
 
 module.exports = function () {
     // Location
@@ -19,11 +20,41 @@ module.exports = function () {
             center: { lat: lat, lng: lng },
             zoom: 18
         });
+        // Draw path control drone
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.POLYLINE,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: [google.maps.drawing.OverlayType.POLYLINE, google.maps.drawing.OverlayType.MARKER, google.maps.drawing.OverlayType.POLYGON]
+            },
+            polylineOptions: {
+                strokeWeight: 2,
+                strokeColor: '#ee9900',
+                clickable: false,
+                zIndex: 1,
+                editable: false
+            },
+            polygonOptions: {
+                editable: false
+            }
+        });
+        drawingManager.setMap(map)   
+
+        google.maps.event.addDomListener(drawingManager, 'polylinecomplete', function (line) {
+            path = line.getPath();
+            var t = "";
+            for (var i = 0; i < path.length; i++) {
+                t += path.getAt(i) + "\n";
+            }
+            data = {path: t}
+            publish_data('https://minh-api.herokuapp.com/api/v1/publish', data)
+        });
 
         const image = {
             url: "/static/image/drone.png"
         };
-        var mark = new google.maps.Marker({
+        mark = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
             icon: image,
@@ -63,21 +94,7 @@ module.exports = function () {
         });
     }
 
-    function showAndUpdateData(sensor_num){
-        var info_sensor = $('.data-sensor')
-        $('.data-sensor .pos-1').text(`Sensor number ${sensor_num}`)
-        subscribe_data(sensor_num)
-        .then((res)=>{
-            $('#key1').text(`Dust: ${res.Dust1[0][1]}`)
-            $('#key2').text(`Humidity: ${res.Humidity1[0][1]}`)
-            $('#key3').text(`Pressure: ${res.Pressure1[0][1]}`)
-            $('#key4').text(`Temperature: ${res.Temperature1[0][1]}`)    
-            $('#key5').text(`PoF: ${res.PoF[0][1]}%`)
-            $('#key6').text(`CoF: ${res.CoF[0][1]}`)
-            $('#key7').text(`inspection_plan: ${res.inspection_plan[0][1]}`)
-        })
-        info_sensor.show()
-    }
+
 
     window.initialize = initialize;
 }

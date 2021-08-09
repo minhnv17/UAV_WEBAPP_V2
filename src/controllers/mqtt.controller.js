@@ -4,7 +4,7 @@ exports.publish = (req, res) => {
     var data = req.body
     data = JSON.stringify(data)
     var client  = mqtt.connect('mqtt://demo.thingsboard.io',{
-        username: "4oEJi3aA5Gya2hpY3jRU"
+        username: "Eqxw8KF94gKjZnIWqkwI"
     })
     client.on('connect', function () {
         client.publish('v1/devices/me/telemetry', data)
