@@ -20,28 +20,7 @@ function fly_API() {
     }
 }
 
-// Draw map
-var redraw = function (payload) {
-    if (payload != null) {
-        lat = payload.lat;
-        lng = payload.lng;
-        // map.setCenter({lat:lat, lng:lng, alt:0});
-        mark.setPosition({ lat: lat, lng: lng, alt: 0 });
-        lineCoords.push(new google.maps.LatLng(lat, lng));
-        var lineCoordinatesPath = new google.maps.Polyline({
-            path: lineCoords,
-            geodesic: true,
-            strokeColor: '#2E10FF'
-        });
-        lineCoordinatesPath.setMap(map);
-    }
-};
 
-//set new GPS drone
-function setGPS(gps) {
-    document.getElementById("lat").innerHTML = gps.lat;
-    document.getElementById("lng").innerHTML = gps.lng;
-}
 
 // Navbar
 const linkColor = document.querySelectorAll(".nav__link");
