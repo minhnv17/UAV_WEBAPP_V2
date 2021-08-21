@@ -1,11 +1,14 @@
 const showAndUpdateData = require('./showAndUpdateData.client')
 const publish_data = require('./publish_data.client')
+const trackingUAV = require('./trackingUAV.client');
+const tracking = require('./trackingUAV.client');
 
 module.exports = function () {
-    // Location
+    // Location start
     window.lat = 21.0065064;
     window.lng = 105.8431323;
     var map;
+    var lineCoords = [];
     const sensorGPS = [
         { lat: 21.0066095, lng: 105.8431323 },
         { lat: 21.0065419, lng: 105.8432735 },
@@ -13,7 +16,6 @@ module.exports = function () {
         { lat: 21.0065144, lng: 105.8429997 }
     ];
 
-    //create map
     // New map
     var initialize = function () {
         map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -39,7 +41,7 @@ module.exports = function () {
                 editable: false
             }
         });
-        drawingManager.setMap(map)   
+        drawingManager.setMap(map)
 
         google.maps.event.addDomListener(drawingManager, 'polylinecomplete', function (line) {
             path = line.getPath();
@@ -47,7 +49,7 @@ module.exports = function () {
             for (var i = 0; i < path.length; i++) {
                 t += path.getAt(i) + "\n";
             }
-            data = {path: t}
+            data = { path: t }
             publish_data('https://minh-api.herokuapp.com/api/v1/publish', data)
         });
 
@@ -94,7 +96,24 @@ module.exports = function () {
         });
     }
 
-
-
     window.initialize = initialize;
+
+    // Function to tracking uav position
+    // var tracking_btn = $('#tracking-uav')
+    trackingUAV(map, lineCoords)
+    // var isTracking = false
+    // tracking_btn.on('click', () => {
+    //     if (!isTracking) {
+    //         isTracking = true
+    //         tracking_btn.removeClass('btn-success').addClass('btn-danger')
+    //         tracking_btn.text('Stop Tracking')
+            
+    //     }
+    //     else if (isTracking) {
+    //         isTracking = false
+    //         tracking_btn.removeClass('btn-danger').addClass('btn-success')
+    //         tracking_btn.text('Start Tracking')
+    //         trackingUAV(map, lineCoords, isTracking)
+    //     }
+    // })
 }
