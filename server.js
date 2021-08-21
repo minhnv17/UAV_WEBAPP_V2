@@ -9,7 +9,7 @@ const cors = require('cors')
 var port = process.env.PORT || 3000
 
 // CORS
-app.options('*', cors()) // include before other routes
+app.use(cors())
 
 // App using
 app.use('/static', express.static(path.join(__dirname, 'public')))
