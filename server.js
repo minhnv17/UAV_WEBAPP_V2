@@ -23,6 +23,9 @@ app.get('/', (req, res)=>{
     res.render('home')
 })
 
+app.get('/control', (req, res) => {
+    res.render('control')
+})
 
 app.listen(port, ()=>{
     console.log(`server listen on port ${port}`)

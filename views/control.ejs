@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fb45b9aef4.js" crossorigin="anonymous"></script>
+    <title>Control UAV</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+.control {
+    text-align: center;
+}
+</style>
+
+<body>
+    <div class="control"> 
+        <b>REMOTE UAV CONTROL</b>
+        <div>
+            <button id="takeoff" class="btn btn-lg btn-primary">Take Off</button>
+            <button id="land" class="btn btn-lg btn-primary">Land</button>
+        </div>
+
+        <div>
+            <button id="forward" class="btn btn-lg btn-primary"><i class="fas fa-arrow-up"></i></button>
+        </div>
+        <div>
+            <button id='left' class="btn btn-lg btn-primary"><i class="fas fa-arrow-left"></i></button>
+            <button id='backward' class="btn btn-lg btn-primary"><i class="fas fa-arrow-down"></i></button>
+            <button id='right' class="btn btn-lg btn-primary"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div>
+            <span>Attitude: 4544 m</span>
+            <button id='up' class="btn btn-lg btn-primary"><i class="fas fa-arrow-up"></i></button>
+            <button id='down' class="btn btn-lg btn-primary"><i class="fas fa-arrow-down"></i></button>
+        </div>
+    </div>
+</body>
+<script>
+    const takeoff = document.getElementById('takeoff')
+    const land = document.getElementById('land')
+    const forward = document.getElementById('forward')
+    const left = document.getElementById('left')
+    const backward = document.getElementById('backward')
+    const right = document.getElementById('right')
+    //Publish data
+    async function postData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+        'Content-Type': 'application/json'
+    },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+    takeoff.addEventListener('click', ()=>{
+        data = {status: "takeoff"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    land.addEventListener('click', ()=>{
+        data = {status: "land"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    // Forward
+    forward.addEventListener('mousedown', ()=>{
+        data = {control: "forward"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    forward.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    //Left
+    left.addEventListener('mousedown', ()=>{
+        data = {control: "left"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    left.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+
+    //Backward
+    backward.addEventListener('mousedown', ()=>{
+        data = {control: "backward"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    backward.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+
+    //Right
+    right.addEventListener('mousedown', ()=>{
+        data = {control: "right"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    right.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+
+</script>
+</html>
