@@ -43,6 +43,14 @@
             <button id='up' class="btn btn-lg btn-primary"><i class="fas fa-arrow-up"></i></button>
             <button id='down' class="btn btn-lg btn-primary"><i class="fas fa-arrow-down"></i></button>
         </div>
+        <div>
+            <iframe width="424" height="240" src="https://www.youtube.com/embed/PkPkS7zCC9I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div>
+            <span>Set YAW</span>
+            <button id='yawleft' class="btn btn-lg btn-primary"><i class="fas fa-arrow-left"></i></button>
+            <button id='yawright' class="btn btn-lg btn-primary"><i class="fas fa-arrow-right"></i></button>
+        </div>
     </div>
 </body>
 <script>
@@ -52,6 +60,10 @@
     const left = document.getElementById('left')
     const backward = document.getElementById('backward')
     const right = document.getElementById('right')
+    const up = document.getElementById('up')
+    const down = document.getElementById('down')
+    const yawleft = document.getElementById('yawleft')
+    const yawright = document.getElementById('yawright')
     //Publish data
     async function postData(url = '', data = {}) {
     // Default options are marked with *
@@ -115,6 +127,41 @@
         data = {control: 0}
         postData('https://minh-api.herokuapp.com/api/v1/publish', data)
     })
-
+    //Up
+    up.addEventListener('mousedown', ()=>{
+        data = {control: "up"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    up.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    //Down
+    down.addEventListener('mousedown', ()=>{
+        data = {control: "down"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    down.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    //Yawleft
+    yawleft.addEventListener('mousedown', ()=>{
+        data = {control: "yawleft"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    yawleft.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    //yawright
+    yawright.addEventListener('mousedown', ()=>{
+        data = {control: "yawright"}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
+    yawright.addEventListener('mouseup', ()=>{
+        data = {control: 0}
+        postData('https://minh-api.herokuapp.com/api/v1/publish', data)
+    })
 </script>
 </html>
