@@ -4,52 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/fb45b9aef4.js" crossorigin="anonymous"></script>
-    <title>Control UAV</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" type="text/css">
+    <script src="/static/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/control.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" 
+        crossorigin="anonymous">
+    <title>CPS APPLICATION</title>
 </head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-}
-.control {
-    text-align: center;
-}
-</style>
-
 <body>
-    <div class="control"> 
-        <b>REMOTE UAV CONTROL</b>
-        <div>
-            <button id="takeoff" class="btn btn-lg btn-primary">Take Off</button>
-            <button id="land" class="btn btn-lg btn-primary">Land</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col banner">
+                APP CPS
+            </div>
         </div>
+        <div class="row">
+            <!-- Camera -->
+            <div class="col-sm-9 camera-follow">
+                <iframe class="camera" src="https://www.youtube.com/embed/PkPkS7zCC9I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
 
-        <div>
-            <button id="forward" class="btn btn-lg btn-primary"><i class="fas fa-arrow-up"></i></button>
-        </div>
-        <div>
-            <button id='left' class="btn btn-lg btn-primary"><i class="fas fa-arrow-left"></i></button>
-            <button id='backward' class="btn btn-lg btn-primary"><i class="fas fa-arrow-down"></i></button>
-            <button id='right' class="btn btn-lg btn-primary"><i class="fas fa-arrow-right"></i></button>
-        </div>
-        <div>
-            <span>Attitude: 4544 m</span>
-            <button id='up' class="btn btn-lg btn-primary"><i class="fas fa-arrow-up"></i></button>
-            <button id='down' class="btn btn-lg btn-primary"><i class="fas fa-arrow-down"></i></button>
-        </div>
-        <div>
-            <iframe width="424" height="240" src="https://www.youtube.com/embed/PkPkS7zCC9I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div>
-            <span>Set YAW</span>
-            <button id='yawleft' class="btn btn-lg btn-primary"><i class="fas fa-arrow-left"></i></button>
-            <button id='yawright' class="btn btn-lg btn-primary"><i class="fas fa-arrow-right"></i></button>
+            <!-- Remote Design -->
+            <div class="col-sm-3 remote-control">
+                <div class="row">
+                    <div class="col header-remote">
+                        <i class="fas fa-angle-double-right"></i>
+                        <span>REMOTE CONTROL</span>
+                        <hr>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p>Chose mode</p>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Select mode control</option>
+                            <option value="1">online remote</option>
+                            <option value="2">auto fly</option>
+                          </select>
+                        <button type="button" class="btn btn-success btn-chose-mode">Success</button>
+                        <hr>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p>Take off and land</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button id="takeoff" type="button" class="btn btn-primary">Take off</button>
+                            <button id="land" type="button" class="btn btn-primary">Land</button>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p>Attitude: <span>15m</span></p>
+                        <button id='up' class="btn btn-primary"><i class="fas fa-arrow-up"></i></button>
+                        <button id='down' class="btn btn-primary"><i class="fas fa-arrow-down"></i></button>
+                        <hr>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p>Remote joystick</p>
+                        <div class="remote-joysticks">
+                            <div>
+                                <button id="forward" class="btn btn-primary"><i class="fas fa-arrow-up"></i></button>
+                            </div>
+                            <div>
+                                <button id='left' class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+                                <button id='backward' class="btn btn-primary"><i class="fas fa-arrow-down"></i></button>
+                                <button id='right' class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p>Camera control</p>
+                        <div class="remote-joysticks">
+                            <button id='yawleft' class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+                            <button id='yawright' class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        <hr>
+                    </div>
+                  </div>
+            </div>
         </div>
     </div>
 </body>
