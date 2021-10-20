@@ -1,7 +1,6 @@
 const showAndUpdateData = require('./showAndUpdateData.client')
 const publish_data = require('./publish_data.client')
 const trackingUAV = require('./trackingUAV.client');
-const tracking = require('./trackingUAV.client');
 
 module.exports = function () {
     // Location start
