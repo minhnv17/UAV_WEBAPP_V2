@@ -67,39 +67,39 @@ module.exports = function () {
     };
 
     //Set new marker sensor
-    function newSensor(position, num) {
-        var sensors = new google.maps.Marker({
-            position: position,
-            map,
-        })
-        const contentString = '<div id="content">' +
-            '<div id="siteNotice">' +
-            "</div>" +
-            `<h4 id="firstHeading">Sensor ${num}</h4>` +
-            '<div id="bodyContent">' +
-            `<p>State: ON</p>` +
-            `<p>LAT: ${position.lat}</p>` +
-            `<p>LAT: ${position.lng}</p>` +
-            "(last time update 29/6/2021)</p>" +
-            "</div>" +
-            "</div>";
-        const infowindow = new google.maps.InfoWindow({
-            content: contentString,
-        });
-        sensors.addListener("click", () => {
-            showAndUpdateData(num)
-            infowindow.open({
-                anchor: sensors,
-                map
-            });
-        });
-    }
+    // function newSensor(position, num) {
+    //     var sensors = new google.maps.Marker({
+    //         position: position,
+    //         map,
+    //     })
+    //     const contentString = '<div id="content">' +
+    //         '<div id="siteNotice">' +
+    //         "</div>" +
+    //         `<h4 id="firstHeading">Sensor ${num}</h4>` +
+    //         '<div id="bodyContent">' +
+    //         `<p>State: ON</p>` +
+    //         `<p>LAT: ${position.lat}</p>` +
+    //         `<p>LAT: ${position.lng}</p>` +
+    //         "(last time update 29/6/2021)</p>" +
+    //         "</div>" +
+    //         "</div>";
+    //     const infowindow = new google.maps.InfoWindow({
+    //         content: contentString,
+    //     });
+    //     sensors.addListener("click", () => {
+    //         showAndUpdateData(num)
+    //         infowindow.open({
+    //             anchor: sensors,
+    //             map
+    //         });
+    //     });
+    // }
 
     window.initialize = initialize;
 
     // Function to tracking uav position
     // var tracking_btn = $('#tracking-uav')
-    trackingUAV(map, lineCoords)
+    // trackingUAV(map, lineCoords)
     // var isTracking = false
     // tracking_btn.on('click', () => {
     //     if (!isTracking) {
