@@ -8,12 +8,12 @@ module.exports = function () {
     window.lng = 105.8431323;
     var map;
     var lineCoords = [];
-    const sensorGPS = [
-        { lat: 21.0066095, lng: 105.8431323 },
-        { lat: 21.0065419, lng: 105.8432735 },
-        { lat: 21.0064809, lng: 105.8431522 },
-        { lat: 21.0065144, lng: 105.8429997 }
-    ];
+    // const sensorGPS = [
+    //     { lat: 21.0066095, lng: 105.8431323 },
+    //     { lat: 21.0065419, lng: 105.8432735 },
+    //     { lat: 21.0064809, lng: 105.8431522 },
+    //     { lat: 21.0065144, lng: 105.8429997 }
+    // ];
 
     // New map
     var initialize = function () {
@@ -52,18 +52,18 @@ module.exports = function () {
             publish_data('https://minh-api.herokuapp.com/api/v1/publish', data)
         });
 
-        const image = {
-            url: "/static/image/drone.png"
-        };
-        mark = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            icon: image,
-            shouldFocus: false
-        });
-        for (let i = 0; i < sensorGPS.length; i++) {
-            newSensor(sensorGPS[i], i)
-        }
+        // const image = {
+        //     url: "/static/image/drone.png"
+        // };
+        // mark = new google.maps.Marker({
+        //     position: { lat: lat, lng: lng },
+        //     map: map,
+        //     icon: image,
+        //     shouldFocus: false
+        // });
+        // for (let i = 0; i < sensorGPS.length; i++) {
+        //     newSensor(sensorGPS[i], i)
+        // }
     };
 
     //Set new marker sensor
